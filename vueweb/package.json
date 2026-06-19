@@ -1,7 +1,21 @@
 {
-  "name": "vueweb",
-  "version": "0.1.0",
+  "name": "chinese-garden",
+  "version": "2.0.0",
   "private": true,
+  "description": "中华古典园林艺术展示网站 — 水墨风格 Vue 2 + Element UI",
+  "author": "Hermitweb",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Hermitweb/vue1.git"
+  },
+  "keywords": [
+    "vue",
+    "element-ui",
+    "chinese-garden",
+    "园林艺术",
+    "文化遗产"
+  ],
   "scripts": {
     "serve": "vue-cli-service serve --open",
     "build": "vue-cli-service build"
