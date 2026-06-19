@@ -1,3 +1,96 @@
-body,ul{margin:0px; padding:0px;}
-ul,li{list-style:none;}
-a{text-decoration: none;}
+/* 引入中文 Web 字体（使用 font.im 国内镜像，访问更稳定） */
+@import url('https://fonts.font.im/css2?family=ZCOOL+XiaoWei&family=Ma+Shan+Zheng&display=swap');
+
+:root {
+  /* 主题色 - 黑白水墨朦胧风格 */
+  --color-ink: #1a1a1a;          /* 浓墨 */
+  --color-ink-medium: #4a4a4a;   /* 中墨 */
+  --color-ink-light: #8a8a8a;    /* 淡墨 */
+  --color-mist: #b8b4ac;         /* 烟霭 */
+  --color-mist-light: #d8d4cc;   /* 轻雾 */
+  --color-rice: #f5f2ed;         /* 宣纸 */
+  --color-rice-light: #faf8f4;   /* 新纸 */
+  --color-bg: #f5f2ed;           /* 主背景 */
+  --color-text: #2a2a2a;         /* 主文字 */
+  --color-text-soft: #6a6a6a;    /* 副文字 */
+  --color-line: #e0dcd4;         /* 墨线 */
+  --color-accent: #3a3a3a;       /* 强调色 */
+  --color-accent-hover: #5a5a5a; /* 强调悬停 */
+  --shadow-sm: 0 2px 8px rgba(26, 26, 26, 0.06);
+  --shadow-md: 0 8px 24px rgba(26, 26, 26, 0.10);
+  --shadow-lg: 0 16px 48px rgba(26, 26, 26, 0.16);
+  --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+  /* 中文字体栈：Web 字体优先，系统隶书/楷书兜底 */
+  --font-zhongguo: "ZCOOL XiaoWei", "Ma Shan Zheng", "LiSu", "STLiti",
+    "KaiTi", "STKaiti", "Microsoft YaHei", "STZhongsong", "SimSun", serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body, ul, h1, h2, h3, h4, h5, h6, p {
+  margin: 0;
+  padding: 0;
+}
+ul, li { list-style: none; }
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: var(--transition);
+}
+body {
+  font-family: var(--font-zhongguo);
+  color: var(--color-text);
+  background: var(--color-bg);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 全局滚动条美化 */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--color-bg); }
+::-webkit-scrollbar-thumb {
+  background: var(--color-ink-light);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--color-ink-medium); }
+
+/* 通用页面切换淡入 */
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.4s ease;
+}
+.fade-enter, .fade-leave-to { opacity: 0; }
+
+/* 标题通用装饰样式 */
+.section-title {
+  text-align: center;
+  font-family: var(--font-zhongguo);
+  color: var(--color-ink);
+  letter-spacing: 0.1em;
+  position: relative;
+  padding: 0.4em 0;
+}
+.section-title::before,
+.section-title::after {
+  content: "";
+  display: inline-block;
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--color-mist), transparent);
+  vertical-align: middle;
+  margin: 0 20px;
+}
+.section-title .seal {
+  display: inline-block;
+  background: var(--color-ink);
+  color: var(--color-rice);
+  font-size: 0.4em;
+  padding: 6px 10px;
+  margin-left: 12px;
+  letter-spacing: 0.2em;
+  border-radius: 2px;
+  vertical-align: middle;
+}

@@ -1,10 +1,45 @@
 module.exports = {
-    publicPath:'./',  // 执行 npm run build 
-    devServer: {
-        host: "localhost", // 设置启动项目网址
-        port: 8080, // 设置启动项目端口号
-        https: false, // 是否使用https协议
-        open: true, // 设置是否自动打开浏览器
-        hotOnly: false, // 是否开启热更新
+  publicPath: './',
+  productionSourceMap: false, // 生产环境不输出 source map，减小体积
+  devServer: {
+    host: 'localhost',
+    port: 8080,
+    https: false,
+    open: true,
+    hotOnly: false,
+    // 静态资源代理 - 把 /vuetu/ 代理到本地的 80 端口
+    proxy: {
+      '/vuetu/': {
+        target: 'http://localhost/',
+        changeOrigin: true,
+        secure: false
+      }
     }
+  },
+  configureWebpack: {
+    // 生产环境性能优化
+    performance: {
+      hints: 'warning',
+      maxAssetSize: 500 * 1024,
+      maxEntrypointSize: 500 * 1024
+    },
+    // 分割代码块
+    optimization: {
+      splitChunks: {
+        chunks: 'all',
+        cacheGroups: {
+          elementUI: {
+            name: 'chunk-element-ui',
+            test: /[\\/]node_modules[\\/]element-ui[\\/]/,
+            priority: 20
+          },
+          vendor: {
+            name: 'chunk-vendors',
+            test: /[\\/]node_modules[\\/]/,
+            priority: 10
+          }
+        }
+      }
+    }
+  }
 }

@@ -2,20 +2,24 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-/** 引入element */
+/** 引入 element */
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import './plugins/element.js'
-import "@/assets/css/quanju.css"
-import "@/assets/css/animate.css"
-import "@/assets/css/vivify.min.css"
+import '@/assets/css/quanju.css'
+import '@/assets/css/animate.css'
+import '@/assets/css/vivify.min.css'
 
-Vue.use(ElementUI);
+// 自定义指令
+import imgLazy from '@/directives/img-lazy'
+
+Vue.use(ElementUI)
+Vue.directive('img-lazy', imgLazy)
+
 Vue.config.productionTip = false
 
-
-Vue.prototype.tubase='http://localhost/vuetu/'
-
+// 全局基础路径 - 使用相对路径，走 vue.config.js 的代理
+Vue.prototype.tubase = '/vuetu/'
 
 new Vue({
   router,
@@ -24,15 +28,8 @@ new Vue({
 }).$mount('#app')
 
 router.beforeEach((to, from, next) => {
-  /*路由发生变化修改页面title*/ 
-  if(to.meta.title){
+  if (to.meta.title) {
     document.title = to.meta.title
   }
   next()
 })
-
-// Vue.directive('title',{
-//   inserted:function(el,binding){
-//     document.title = el.dataset.title
-//   }
-// }) 
